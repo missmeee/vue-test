@@ -1,7 +1,7 @@
 <template>
     <li>
       <label>
-        <input type="checkbox" name="" id="" :checked="todo.done"/>
+        <input type="checkbox" name="" id="" :checked="todo.done" @click="handleCheck(todo.id)"/>
         <span>{{todo.title}}</span>
       </label>
     </li>
@@ -12,9 +12,12 @@
 
     export default {
         name:'Item',
-		props:['todo'],
-		mounted(){
-			
+		props:['todo','checkTodo'],
+		methods:{
+			handleCheck(id){
+				//通知app组件将对应的done值取反
+				this.checkTodo(id)
+			}
 		}
     }
 
