@@ -5,15 +5,28 @@
       name=""
       id=""
       placeholder="请输入你的任务名称，按回车键确认"
+      @keyup.enter = 'add'
     />
   </div>
 </template>
 
 
 <script>
+import {nanoid} from 'nanoid'
 export default {
   name: "Top",
+  props:['addTodo'],
+  methods:{
+    add(e){
+      if(!e.target.value) return alert('输入不能为空白')
+      const todoObj = {id:nanoid(),title:e.target.value,done:false}
+      this.addTodo(todoObj)
+      e.target.value=''
+      //console.log(todoObj)
+    }
+  }
 };
+
 </script>
 
 

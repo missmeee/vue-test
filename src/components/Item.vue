@@ -14,7 +14,7 @@
         name:'Item',
 		props:['todo'],
 		mounted(){
-			console.log(this.todo);
+			
 		}
     }
 

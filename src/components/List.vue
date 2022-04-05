@@ -13,15 +13,8 @@ export default {
   components: {
     Item,
   },
-  data() {
-    return {
-      todos: [
-        { id: "0001", title: "吃饭", done: true },
-        { id: "0002", title: "喝酒", done: true },
-        { id: "0003", title: "睡觉", done: true },
-      ],
-    };
-  },
+  props:['todos']
+
 };
 </script>
 
