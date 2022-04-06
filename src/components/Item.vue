@@ -4,6 +4,7 @@
         <input type="checkbox" name="" id="" :checked="todo.done" @click="handleCheck(todo.id)"/>
         <span>{{todo.title}}</span>
       </label>
+			<button class="btn btn-danger">删除</button>
     </li>
 </template>
 
@@ -60,4 +61,10 @@ li:last-child{
 	border-bottom: none;
 }
 
+li:hover{
+	background-color:#ddd;
+}
+li:hover button{
+	display:block;
+}
 </style>
