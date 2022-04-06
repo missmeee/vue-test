@@ -3,8 +3,8 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <Top :addTodo='addTodo'></Top>
-        <List :todos='todos' :checkTodo='checkTodo'></List>
-        <Buttom></Buttom>
+        <List :todos='todos' :checkTodo='checkTodo' :removeTodo='removeTodo'></List>
+        <Buttom :todos='todos' :checkAllTodo='checkAllTodo' :clearAllTodo='clearAllTodo'></Buttom>
       </div>
     </div>
   </div>
@@ -42,6 +42,21 @@ export default {
       this.todos.forEach((todo)=>{
         if(todo.id === id) todo.done = !todo.done
       })
+    },
+    removeTodo(id){
+      this.todos = this.todos.filter(todo => todo.id !== id)
+    },
+    //全选或全不选
+    checkAllTodo(done){
+      this.todos.forEach((todo)=>{
+        todo.done = done
+      })
+    },
+    //清除所有已完成todo
+    clearAllTodo(){
+      this.todos = this.todos.filter((todo)=>{
+        return !todo.done
+      })
     }
   }
 };
@@ -54,7 +69,6 @@ body {
 }
 
 .btn {
-  display: inline-block;
   padding: 4px 12px;
   margin-bottom: 0;
   font-size: 14px;

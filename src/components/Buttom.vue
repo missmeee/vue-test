@@ -1,10 +1,10 @@
 <template>
-  <div class="todo-footer">
+  <div class="todo-footer" v-show="todos.length">
     <label for="">
-      <input type="checkbox" />
+      <input type="checkbox" :checked="doneTodo === todos.length" @change="checkAll"/>
     </label>
-    <span> <span>已完成0</span>/ 全部 2 </span>
-    <button class="btn btn-danger">清除已完成任务</button>
+    <span> <span>已完成 {{doneTodo}}</span>/ 全部 {{todos.length}}</span>
+    <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
   </div>
 </template>
 
@@ -12,6 +12,22 @@
 <script>
 export default {
   name: "Buttom",
+	props:['todos','checkAllTodo','clearAllTodo'],
+	computed:{
+		doneTodo(){
+			return this.todos.reduce((pre,todo)=>pre + (todo.done ? 1:0),0)
+		}
+	},
+	methods:{
+		checkAll(e){
+			this.checkAllTodo(e.target.checked)
+		},
+		clearAll(){
+			if(confirm("确定全部删除吗？")){
+				this.clearAllTodo()
+			}
+		}
+	}
 };
 </script>
 
